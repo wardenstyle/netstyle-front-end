@@ -17,12 +17,31 @@ export class MoviesComponent {
     this.fetchData(); // Appeler fetchData lors de l'initialisation
   }
 
-  fetchData() {
-    this.http.get<Movie[]>('http://localhost/movies').subscribe(response => {
-      console.log(response);
-      this.movies = response; // Ici, response est maintenant typé comme Movie[]
-    });
-  }
+  /** pour le local */
+  // fetchData() {
+  //   this.http.get<Movie[]>('http://localhost/movies').subscribe(response => {
+  //     console.log(response);
+  //     this.movies = response; // Ici, response est maintenant typé comme Movie[]
+  //   });
+  // }
+
+  /** pour la prod (symfony) */
+  // fetchData() {
+  //   this.http.get<Movie[]>('https://netstyle.alwaysdata.net/movies').subscribe(response => {
+  //     console.log(response);
+  //     this.movies = response; // Ici, response est maintenant typé comme Movie[]
+  //   });
+  // }
+
+    /** pour la prod (netAPI php) */
+    fetchData() {
+      this.http.get<Movie[]>('/movies.php').subscribe(response => {
+        console.log(response);
+        this.movies = response; // Ici, response est maintenant typé comme Movie[]
+      });
+    }
+
+  
 }
 
 
